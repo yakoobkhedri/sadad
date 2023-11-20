@@ -172,6 +172,17 @@ function addNewCart() {
   monthInput.value = '';
 }
 
+// remove cart
+
+let removeCart=Array.from(document.getElementsByClassName('remove-cart'));
+
+removeCart.forEach((item)=>{
+  item.addEventListener('click',function () {
+    item.parentElement.classList.remove('d-flex');
+    item.parentElement.style.display='none';
+  })
+})
+
 // set just number to input
 
 $(".justNumber").keypress(function (e) {
@@ -214,12 +225,15 @@ let dangerAlert=document.getElementById('dangerAlert');
 secondPass.addEventListener('keyup', function () {
   if (secondPass.value.length >= 5) {
     payment.classList.add('bg-green');
+    payment.removeAttribute("disabled");
   } else {
-    payment.classList.remove('bg-green')
+    payment.classList.remove('bg-green');
+    payment.setAttribute('disabled','');
   }
 });
 
-secondPassBtn.addEventListener('click', function () {
+secondPassBtn.addEventListener('click', function (e) {
+  e.preventDefault();
   successAlert.style.display='flex';
   setInterval(()=>{
     successAlert.style.display = 'none'
@@ -248,6 +262,14 @@ secondPassBtn.addEventListener('click', function () {
     document.querySelector('.minute-secretCode').innerHTML = minutes + ' ';
   }
   countDown()
+})
+
+payment.addEventListener('click',function (e) {
+  e.preventDefault();
+
+    Array.from(document.getElementsByClassName('.getError')).forEach((item)=>{
+      item.classList.add('error')
+    })
 })
 
 // open mailbox

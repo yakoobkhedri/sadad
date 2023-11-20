@@ -81,6 +81,10 @@ body {
     z-index: 10;
 }
 
+.z-20 {
+    z-index: 20;
+}
+
 /* color */
 .text-main {
     color: #FD9E02;
@@ -431,17 +435,24 @@ input:focus{
 .transparent-focus:focus{
     border: 1px solid transparent !important;
 }
+
 .error{
     border: 1px solid #CB000066!important;
     background: #fae5e5;
 }
-.error .errorIcon{
+.error-bg{
+    background: #fae5e5;
+}
+.error-bg-white.error{
+    background-color: white;
+}
+.error .errorIcon,.error-remain p:last-child{
    display: block!important;
 }
-.error .cart-icon{
+.error .cart-icon,.error-remain p:first-child{
     display: none!important;
  }
- .error input::placeholder{
+ .error input::placeholder,.error::placeholder,.error-text,.error-bg{
     color: #CB0000;
  }
 
