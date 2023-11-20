@@ -159,7 +159,6 @@ cartItem.forEach((item) => {
     yearInput.value = cartYear;
     bankLogo.src = item.querySelector('img').src;
     cartNumber.value = item.querySelector('p').innerText;
-
   })
 })
 

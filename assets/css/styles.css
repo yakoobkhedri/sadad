@@ -431,6 +431,19 @@ input:focus{
 .transparent-focus:focus{
     border: 1px solid transparent !important;
 }
+.error{
+    border: 1px solid #CB000066!important;
+    background: #fae5e5;
+}
+.error .errorIcon{
+   display: block!important;
+}
+.error .cart-icon{
+    display: none!important;
+ }
+ .error input::placeholder{
+    color: #CB0000;
+ }
 
 @media only screen and (max-width:1400px) {
 
