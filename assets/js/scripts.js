@@ -1,12 +1,21 @@
-// filter
+// filter  //  more
 
 let filterBtn = Array.from(document.getElementsByClassName('filterBtn'));
+let moreBtn = Array.from(document.getElementsByClassName('moreBtn'));
 let filterContent = Array.from(document.getElementsByClassName('filterContent'));
+let moreContent = Array.from(document.getElementsByClassName('moreContent'));
 
 filterBtn.forEach((item) => {
   item.addEventListener('click', function () {
     item.nextElementSibling.classList.toggle('active');
     item.querySelector('svg').classList.toggle('active');
+  })
+})
+moreBtn.forEach((item) => {
+  item.addEventListener('click', function () {
+    item.previousElementSibling.classList.add('active');
+    item.classList.remove('d-block');
+    item.classList.add('d-none');
   })
 })
 
@@ -54,6 +63,9 @@ function initializeClock(id, endtime) {
 
 const deadline = new Date(Date.parse(new Date()) + 1 * 1 * 15 * 60 * 1000);
 initializeClock('clockdiv', deadline);
+if (deadline<0) {
+  alert()
+}
 
 // cart number
 
@@ -546,6 +558,11 @@ const capcha =  document.getElementById('capcha')
 yearInput.addEventListener('input',function () {
   if (this.value.length>1) {
     capcha.focus();
+  }
+})
+capcha.addEventListener('input',function () {
+  if (this.value.length>6) {
+    secondPass.focus();
   }
 })
 

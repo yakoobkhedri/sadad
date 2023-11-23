@@ -335,13 +335,13 @@ box-shadow: 0px 4px 4px 0px #00000040;
     display: none;
 }
 
-.filterContent {
+.filterContent,.moreContent {
     max-height: 0;
     padding: 0 !important;
     transition: all .4s;
 }
 
-.filterContent.active {
+.filterContent.active,.moreContent.active {
     max-height: 1000px;
     padding: 10px 0 !important;
 }
@@ -441,7 +441,7 @@ a {
 input:focus{
     border: 1px solid #FD9E02!important;
 }
-.box-focus:focus-within{
+.box-focus:focus-within,.focus{
     border: 1px solid #FD9E02!important;
 }
 .transparent-focus:focus{
