@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="fa">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link href="assets/css/bootstrap.min.css" rel="stylesheet">
+  <link rel='stylesheet' type='text/css' media='screen' href='assets/css/styles.css'>
+  <title>پرداخت ناموفق</title>
+</head>
+
+<body>
+
+    <!-- header -->
+
+    <header class="py-4 bg-white position-relative my-1">
+      <!-- success alert -->
+      <div id="successAlert"
+        class="d-nonee align-items-center z-20 justify-content-between position-fixed gap-4 end-0 start-0 top-0 mt-2 mx-auto bg-green rounded-8 p-8 w-343 h-72">
+        <div class="d-flex align-items-center gap-2">
+          <svg class="flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
+            fill="none">
+            <rect width="32" height="32" rx="16" fill="white" fill-opacity="0.3" />
+            <path d="M16 16.9331V13.8164" stroke="white" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path
+              d="M15.9992 19.4378C15.8842 19.4378 15.7909 19.5312 15.7917 19.6462C15.7917 19.7612 15.885 19.8545 16 19.8545C16.115 19.8545 16.2084 19.7612 16.2084 19.6462C16.2084 19.5312 16.115 19.4378 15.9992 19.4378"
+              stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M17.6908 9.44965L24.0733 20.6196C24.815 21.918 23.8775 23.5338 22.3825 23.5338H9.61751C8.12167 23.5338 7.18417 21.918 7.92667 20.6196L14.3092 9.44965C15.0567 8.14048 16.9433 8.14048 17.6908 9.44965Z"
+              stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <p class="mb-0 fs-14 text-white">رمز دوم به شماره موبایل متصل به کارت ارسال شده.</p>
+        </div>
+        <svg class="flex-shrink-0 cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          viewBox="0 0 24 24" fill="none">
+          <g opacity="0.7">
+            <mask id="mask0_1250_12869" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="5" y="5" width="14"
+              height="14">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+                fill="white" />
+            </mask>
+            <g mask="url(#mask0_1250_12869)">
+              <rect x="-13" y="-13" width="50" height="50" fill="white" />
+              <mask id="mask1_1250_12869" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-13" y="-13"
+                width="50" height="50">
+                <rect x="-13" y="-13" width="50" height="50" fill="white" />
+              </mask>
+              <g mask="url(#mask1_1250_12869)">
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <!-- danger alert -->
+      <div id="dangerAlert"
+        class="d-nonee align-items-center z-20 justify-content-between position-fixed gap-4 end-0 start-0 top-0 mt-2 mx-auto bg-red rounded-8 p-8 w-343 h-64">
+        <div class="d-flex align-items-center gap-2">
+          <svg class="flex-shrink-0" xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32"
+            fill="none">
+            <rect width="32" height="32" rx="16" fill="white" fill-opacity="0.3" />
+            <path d="M16 16.9331V13.8164" stroke="white" stroke-width="1.5" stroke-linecap="round"
+              stroke-linejoin="round" />
+            <path
+              d="M15.9992 19.4378C15.8842 19.4378 15.7909 19.5312 15.7917 19.6462C15.7917 19.7612 15.885 19.8545 16 19.8545C16.115 19.8545 16.2084 19.7612 16.2084 19.6462C16.2084 19.5312 16.115 19.4378 15.9992 19.4378"
+              stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path fill-rule="evenodd" clip-rule="evenodd"
+              d="M17.6908 9.44965L24.0733 20.6196C24.815 21.918 23.8775 23.5338 22.3825 23.5338H9.61751C8.12167 23.5338 7.18417 21.918 7.92667 20.6196L14.3092 9.44965C15.0567 8.14048 16.9433 8.14048 17.6908 9.44965Z"
+              stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" />
+          </svg>
+          <p class="mb-0 fs-14 text-white">مقدار وارد شده نامعتبر است!</p>
+        </div>
+        <svg class="flex-shrink-0 cursor-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+          viewBox="0 0 24 24" fill="none">
+          <g opacity="0.7">
+            <mask id="mask0_595_11824" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="5" y="5" width="14"
+              height="14">
+              <path fill-rule="evenodd" clip-rule="evenodd"
+                d="M19 6.41L17.59 5L12 10.59L6.41 5L5 6.41L10.59 12L5 17.59L6.41 19L12 13.41L17.59 19L19 17.59L13.41 12L19 6.41Z"
+                fill="white" />
+            </mask>
+            <g mask="url(#mask0_595_11824)">
+              <rect x="-13" y="-13" width="50" height="50" fill="white" />
+              <mask id="mask1_595_11824" style="mask-type:luminance" maskUnits="userSpaceOnUse" x="-13" y="-13" width="50"
+                height="50">
+                <rect x="-13" y="-13" width="50" height="50" fill="white" />
+              </mask>
+              <g mask="url(#mask1_595_11824)">
+              </g>
+            </g>
+          </g>
+        </svg>
+      </div>
+      <!--  -->
+      <div class="container">
+        <div class="d-flex align-items-center justify-content-between">
+          <div class="d-flex align-items-center gap-2">
+            <a class="d-block"><img alt="logo" src="assets/img/logo.png" class="img-fluid"></a>
+            <p class="fs-12 text-gray mb-0">ارائه راه‌کار‌های پرداخت</p>
+          </div>
+          <img alt="icon" src="assets/img/shaparak.png" class="img-fluid">
+        </div>
+      </div>
+    </header>
+
+  <!-- main -->
+
+  <main>
+
+    <div class="w-328 mx-auto mt-4 mb-5">
+      <div class="rounded-16 px-4 shadow3 py-3 bg-red text-center text-white">
+        <p class="font-bold mb-2">عملیات ناموفق!</p>
+        <p class="mb-0 fs-14">دلیل خطا</p>
+      </div>
+      <div class="rounded-16 bg-white shadow3 pb-1">
+        <a class="text-white text-center px-3 bg-red h-47 rounded-t-16 d-flex align-items-center justify-content-between">
+           <div class="d-flex align-items-center gap-2">
+            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25" fill="none">
+              <path d="M13.0422 17.6484H15.0014C15.5539 17.6484 16.0018 17.2005 16.0018 16.648V15.1543" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path d="M7.99854 10.6452V10.145C7.99854 8.21121 9.56619 6.64355 11.5 6.64355H12.5004C14.4342 6.64355 16.0019 8.21121 16.0019 10.145V10.6452" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M14.5012 11.2448V14.5462C14.5012 14.8777 14.77 15.1464 15.1015 15.1464H16.2519C16.9426 15.1464 17.5025 14.5865 17.5025 13.8959V11.8951C17.5025 11.2044 16.9426 10.6445 16.2519 10.6445H15.1015C14.77 10.6445 14.5012 10.9133 14.5012 11.2448Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <rect x="2.99634" y="3.1416" width="18.0075" height="18.0075" rx="5" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M9.49905 14.5462V11.2448C9.49905 10.9133 9.23031 10.6445 8.8988 10.6445H7.74832C7.05768 10.6445 6.4978 11.2044 6.4978 11.8951V13.8959C6.4978 14.5865 7.05768 15.1464 7.74832 15.1464H8.8988C9.23031 15.1464 9.49905 14.8777 9.49905 14.5462V14.5462Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+              </svg>
+              <p class="mb-0 fs-10">خدمات مشتریان:</p>
+           </div>
+           <p class="fs-12 mb-0">۰۲۱-42739000</p>
+          </a>
+        <img alt="logo" src="assets/img/irancel.png" class="img-fluid d-block mx-auto mt-3">
+        <p class="text-center fs-14">ایرانسل</p>
+        <div class="d-flex align-items-center justify-content-between mt-3 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">مبلغ تراکنش</p>
+          <p class="fw-bold fs-14">۲۵۰۰۰۰ ریال</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">زمان تراکنش</p>
+          <p class="fw-bold fs-12 fs-lg-14">۲۴ مرداد ۱۴۰۲ - ۱۳:۲۰</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">شماره ارجاع</p>
+          <p class="fw-bold fs-12 fs-lg-14">2709500</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">شماره سفارش مشتری</p>
+          <p class="fw-bold fs-12 fs-lg-14">2709500</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">بانک صادر کننده</p>
+          <p class="fw-bold fs-12 fs-lg-14">بانک ملی</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">نوع عملیات</p>
+          <p class="fw-bold fs-12 fs-lg-14">6624032</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">شماره کارت</p>
+          <p class="fw-bold fs-12 fs-lg-14">۶۲۱۹ ۸۶** **** ۸۷۶۶</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">پدیرنده</p>
+          <p class="fw-bold fs-12 fs-lg-14">ایرانسل</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">آدرس وب‌سایت</p>
+          <p class="fw-bold fs-12 fs-lg-14">https://www.irancell.ir</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">شماره پذیرنده</p>
+          <p class="fw-bold fs-12 fs-lg-14">6624032</p>
+        </div>
+        <div class="d-flex align-items-center justify-content-between mt-2 px-3">
+          <p class="fs-10 fs-lg-14 text-gray">شماره ترمینال</p>
+          <p class="fw-bold fs-12 fs-lg-14">6624032</p>
+        </div>
+        <a class="bg-main text-white border-0 rounded-8 mx-3 fw-bold fs-14 d-block py-2 h-40 w-auto mt-1 text-center">بازگشت</a>
+        <img alt="logo" src="assets/img/Frame.png" class="img-fluid d-block mx-auto my-4">
+      </div>
+    </div>
+    
+  </main>
+
+
+  <script src="assets/js/bootstrap.bundle.min.js"></script>
+</body>
+
+</html>

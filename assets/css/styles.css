@@ -107,6 +107,11 @@ body {
     box-shadow: 0px 0px 8px 0px #00000040;
 }
 
+.shadow3{
+box-shadow: 0px 4px 24px 0px #0000001A;
+box-shadow: 0px 4px 4px 0px #00000040;
+}
+
 /* padding */
 .pt-50 {
     padding-top: 50px !important;
@@ -257,6 +262,10 @@ body {
 
 .w-288 {
     width: 288px;
+}
+
+.w-328 {
+    width: 328px;
 }
 
 .w-343 {
