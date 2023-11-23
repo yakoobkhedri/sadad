@@ -108,8 +108,8 @@ body {
 }
 
 /* padding */
-.pt-34 {
-    padding-top: 34px !important;
+.pt-50 {
+    padding-top: 50px !important;
 }
 
 /* top */
@@ -149,7 +149,7 @@ body {
 }
 
 .bg-main2 {
-    background: #FD9E0266;
+    background: #FFC76D;
 }
 
 .bg-second {
@@ -432,6 +432,9 @@ a {
 input:focus{
     border: 1px solid #FD9E02!important;
 }
+.box-focus:focus-within{
+    border: 1px solid #FD9E02!important;
+}
 .transparent-focus:focus{
     border: 1px solid transparent !important;
 }
@@ -439,6 +442,14 @@ input:focus{
 .error{
     border: 1px solid #CB000066!important;
     background: #fae5e5;
+    display: flex;
+  align-items: center;
+  gap: 4px;
+  height: 47px;
+  width: 100%;
+  border-radius: 8px;
+  padding: 4px;
+  outline: none;
 }
 .error-bg{
     background: #fae5e5;
@@ -517,7 +528,7 @@ input:focus{
         margin-top: 0;
     }
 
-    .pt-34 {
+    .pt-50 {
         padding-top: 56px !important;
     }
 }

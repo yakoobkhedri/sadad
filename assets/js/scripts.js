@@ -60,10 +60,9 @@ initializeClock('clockdiv', deadline);
 let creditCardDigitArray = []
 var lastchar=null;
 
+var cardnumber = document.getElementById("cardnumber");
 function sunnyweb_check_number(event) {
   let creditCardDigitArray = []
-  var cardnumber = document.getElementById("cardnumber");
-
   if(event.key != 'Backspace'){
     creditCardDigitArray = [...cardnumber.value]
 	if	(lastchar===' ' && ( cardnumber.value.length=== 4 || cardnumber.value.length=== 9 ||cardnumber.value.length=== 14)){
@@ -79,7 +78,6 @@ function sunnyweb_check_number(event) {
 	
     var cardno = cardnumber.value;
     var imgToSwap = document.getElementById("bank-logo");
-    console.log(cardno)
     if (cardno.length == 7) {
     if (cardno === "6104 33") { imgToSwap.src = 'assets/img/bank-iran/mellat.png';}
 	  if (cardno === '6037 99') { imgToSwap.src = "./assets/img/bank-iran/meli.png"; }
@@ -120,17 +118,172 @@ function sunnyweb_check_number(event) {
   lastchar=cardnumber.value.substr(cardnumber.value.length - 1);
 }
 
+// cart list
+const myCartsArray = [
+  {
+    cartNumber : "6037 9954 1234 6382" ,
+    cartMonth : "08" ,
+    cartYear : "06" ,
+    cartSrc : "./assets/img/bank-iran/meli.png"
+  },
+  {
+    cartNumber : "6219 8654 1234 6382" ,
+    cartMonth : "04" ,
+    cartYear : "00" ,
+    cartSrc : "./assets/img/bank-iran/saman.png"
+  },
+  {
+    cartNumber : "5894 6354 1234 6382",
+    cartMonth : "01",
+    cartYear : "02" ,
+    cartSrc : "./assets/img/bank-iran/refah.png"
+  },
+  {
+    cartNumber : "6219 8610 1546 1482",
+    cartMonth : "05",
+    cartYear : "09" ,
+    cartSrc : "./assets/img/bank-iran/saman.png"
+  }
+]
+
+// filter card number
+let filteredArray = myCartsArray
+
+function filterCardNumber(num) {
+  let newNum = [...num]
+  for (let [enterNumIndex , enterNum] of Object.entries(newNum)) {
+    for (let [arrayElementIndex , arrayElement] of Object.entries(filteredArray)) {
+      for (let [arrayElementNumIndex , arrayElementNum] of Object.entries([...arrayElement.cartNumber])) {
+        if (newNum[enterNumIndex] !== [...arrayElement.cartNumber][enterNumIndex]){
+          filteredArray.splice(arrayElementIndex,1)
+          break
+
+        }
+      }
+      
+    }
+    
+  }
+}
+
+
+let cardNumberIsOk = false
 document.getElementById('cardnumber').addEventListener('input',function () {
+  filterCardNumber(this.value)
+  showCartsUnderInput(filteredArray)
   if (this.value.length>18) {
-    cvv2Digit.focus();
+    if (cardNumberIsOk){
+      cvv2Digit.focus();
+    }else{
+      showCartListDropdown.classList="error"
+    }
   }
 })
 
-// cart list dropdown
 
-let showCartListDropdown = document.getElementById('showCartListDropdown');
+// make cart number to star(*)
+function cartNumberToStar(num) {
+  const firstPart = num.slice(0, 10);
+  const middlePart = '****';
+  const lastPart = num.slice(14);
+  const result = firstPart + middlePart + lastPart;
+  return(result);
+}
+
+// show saved carts bottom of input
 let cartDropdown = document.getElementById('cartDropdown');
+let showCartListDropdown = document.getElementById('showCartListDropdown');
+function showCartsUnderInput(arr) {
+  cartDropdown.innerHTML= ""
+  for (let el of arr) {
+    let child = document.createElement('div')
+    child.setAttribute('data-year', el.cartYear);
+    child.setAttribute('data-month', el.cartMonth);
+    child.classList ='rounded-8 cart-item bg-gradient-gray p-3 mb-1 mt-2 w-100 h-47 cursor-pointer d-flex align-items-center justify-content-between'
+    child.innerHTML=
+    `<div class="d-flex align-items-center justify-content-end w-100 gap-2" onclick="closeModal()">
+        <p class="fw-bold ltr mb-0">${cartNumberToStar(el.cartNumber)}</p>
+        <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-24">
+      </div>`
+    cartDropdown.appendChild(child)
+  }
+}
+showCartsUnderInput(myCartsArray)
 
+function closeModal() {
+  cartDropdown.classList.remove('d-block');
+}
+showCartListDropdown.addEventListener('click', function () {
+  cartDropdown.classList.toggle(`d-block`);
+})
+document.addEventListener('click', (event) => {
+  if (!event.target.closest('.cartDropdown') && !event.target.closest('#showCartListDropdown')) {
+    cartDropdown.classList.remove('d-block');
+  }
+})
+
+// show saved carts in sideBar
+let savedCartSideBar = document.getElementById('savedCartSideBar');
+let firstSavedCartSideBar = savedCartSideBar.children[0]
+let secondSavedCartSideBar = savedCartSideBar.children[1]
+function showCartsInSideBar() {
+  firstSavedCartSideBar.setAttribute('data-year', myCartsArray[myCartsArray.length-2].cartYear);
+firstSavedCartSideBar.setAttribute('data-month', myCartsArray[myCartsArray.length-2].cartMonth);
+firstSavedCartSideBar.innerHTML=
+`<svg class="cursor-pointer remove-cart" xmlns="http://www.w3.org/2000/svg" width="24" height="25"
+  viewBox="0 0 24 25" fill="none">
+  <path d="M8 8.5L16 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+    stroke-linejoin="round" />
+  <path d="M16 8.5L8 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+  stroke-linejoin="round" />
+</svg>
+<div class="d-flex align-items-center gap-2 cart-item">
+  <p class="fw-bold ltr mb-0">${cartNumberToStar(myCartsArray[myCartsArray.length-2].cartNumber)}</p>
+  <img alt="icon" src=${myCartsArray[myCartsArray.length-2].cartSrc} class="img-fluid d-block w-32 h-32">
+</div>`
+
+secondSavedCartSideBar.setAttribute('data-year', myCartsArray[myCartsArray.length-1].cartYear);
+secondSavedCartSideBar.setAttribute('data-month', myCartsArray[myCartsArray.length-1].cartMonth);
+secondSavedCartSideBar.innerHTML=
+`<svg class="cursor-pointer remove-cart" xmlns="http://www.w3.org/2000/svg" width="24" height="25"
+  viewBox="0 0 24 25" fill="none">
+  <path d="M8 8.5L16 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+    stroke-linejoin="round" />
+  <path d="M16 8.5L8 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+  stroke-linejoin="round" />
+</svg>
+<div class="d-flex align-items-center gap-2 cart-item">
+  <p class="fw-bold ltr mb-0">${cartNumberToStar(myCartsArray[myCartsArray.length-1].cartNumber)}</p>
+  <img alt="icon" src=${myCartsArray[myCartsArray.length-1].cartSrc} class="img-fluid d-block w-32 h-32">
+</div>`
+}
+showCartsInSideBar()
+
+// show saved carts in Modal
+let modalBody = document.getElementById('modal-body');
+function showCartsInModal() {
+  modalBody.innerHTML = ""
+  for (let el of myCartsArray) {
+    let newChild = document.createElement('div')
+    newChild.setAttribute('data-year', el.cartYear);
+    newChild.setAttribute('data-month', el.cartMonth);
+    newChild.classList = "rounded-t-16 rounded-b-5 cursor-pointer border bg-gradient-gray mb-2 px-3 w-100 h-47 d-flex align-items-center justify-content-between"
+    newChild.innerHTML=
+   `<svg class="cursor-pointer remove-cart" xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+      fill="none">
+      <path d="M8 8.5L16 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round"></path>
+      <path d="M16 8.5L8 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round"></path>
+    </svg>
+    <div class="cart-item d-flex align-items-center gap-2 flex-grow-1 justify-content-end h-100" data-bs-dismiss="modal">
+      <p class="fw-bold ltr mb-0">${cartNumberToStar(el.cartNumber)}</p>
+      <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-32 h-32">
+    </div>`
+      modalBody.appendChild(newChild)
+  }
+}
+showCartsInModal()
 showCartListDropdown.addEventListener('click', function () {
   this.nextElementSibling.classList.toggle('active');
 })
@@ -140,7 +293,7 @@ document.addEventListener('click', (event) => {
   }
 })
 
-// select cart
+// select cart 
 
 let cartItem = Array.from(document.getElementsByClassName('cart-item'));
 let monthInput = document.getElementById('monthInput');
@@ -173,13 +326,16 @@ function addNewCart() {
 }
 
 // remove cart
-
 let removeCart=Array.from(document.getElementsByClassName('remove-cart'));
 
 removeCart.forEach((item)=>{
   item.addEventListener('click',function () {
-    item.parentElement.classList.remove('d-flex');
-    item.parentElement.style.display='none';
+    let removableCart = item.parentElement.children[1].children[0].textContent 
+    findedCart = myCartsArray.filter((el)=>cartNumberToStar(el.cartNumber) == removableCart)
+    let removableCartIndex = myCartsArray.findIndex((obj)=> obj === findedCart[0])
+    myCartsArray.splice(removableCartIndex, 1);
+    showCartsInModal()
+    showCartsInSideBar()
   })
 })
 
@@ -191,28 +347,6 @@ $(".justNumber").keypress(function (e) {
     return false;
   }
 });
-
-// enter number between 1 to 12
-
-// function My_Validate(){
-  
-//   let month=document.getElementById('monthInput').value;
-//   let year=document.getElementById('yearInput').value;
-  
-  
-//   if ( month <= 0 ){
-//    console.log("باید یه عدد بزرگتر از 0 وارد کنی");
-//    return false;
-//   }
-//   else if ( month >= 12 ){
-//     month.value='00'
-//    return false;
-//   }
-//   else{
-//    alert("همه چی درسته و فرم ارسال شد");
-//   }
-// }
-
 
 // second password
 
@@ -264,12 +398,40 @@ secondPassBtn.addEventListener('click', function (e) {
   countDown()
 })
 
+// enter submit buttom
+let cvv2 = document.getElementById('cvv2Digit');
+let capchacode =  document.getElementById('capcha')
 payment.addEventListener('click',function (e) {
   e.preventDefault();
+  let formArray = [ cardnumber.value , cvv2.value , monthInput.value , yearInput.value , capchacode.value , secondPass.value ]
+  for (let arr of formArray){
+    if (!arr) {
+      if(arr === cardnumber.value){
+        showCartListDropdown.classList="error"
+      }
+      if(arr === cvv2.value){
+        cvv2.parentElement.classList="error"
+      }
+      if( arr === monthInput.value ){
+        monthInput.classList="error"
+      }
+      if( arr === yearInput.value ){
+        yearInput.classList="error"
+      }
+      if( arr === capchacode.value ){
+        capchacode.parentElement.classList="error"
+      }
+      if( arr === secondPass.value ){
+        secondPass.parentElement.classList="error"
+      } 
+    }
+  }
+if (cardnumber.value || cvv2.value || monthInput.value || yearInput.value || capchacode.value || secondPass.value ){
+  Array.from(document.getElementsByClassName('.getError')).forEach((item)=>{
+    item.classList.add('error')
+  })
+}
 
-    Array.from(document.getElementsByClassName('.getError')).forEach((item)=>{
-      item.classList.add('error')
-    })
 })
 
 // open mailbox
@@ -370,15 +532,20 @@ cvv2Digit.addEventListener('input',function () {
   }
 })
 
-monthInput.addEventListener('input',function () {
+monthInput.addEventListener('input',function (event) {
+  // Check if the input value is between 0 and 12
+  if (this.value < 0 || this.value > 12) {
+    this.value = "";
+  }
+  // next feild
   if (this.value.length>1) {
     yearInput.focus();
   }
 })
-
+const capcha =  document.getElementById('capcha')
 yearInput.addEventListener('input',function () {
   if (this.value.length>1) {
-    document.getElementById('capcha').focus();
+    capcha.focus();
   }
 })
 
