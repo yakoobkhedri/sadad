@@ -63,9 +63,6 @@ function initializeClock(id, endtime) {
 
 const deadline = new Date(Date.parse(new Date()) + 1 * 1 * 15 * 60 * 1000);
 initializeClock('clockdiv', deadline);
-if (deadline<0) {
-  alert()
-}
 
 // cart number
 
@@ -159,7 +156,7 @@ const myCartsArray = [
 ]
 
 // filter card number
-let filteredArray = myCartsArray
+let filteredArray = [...myCartsArray]
 
 function filterCardNumber(num) {
   let newNum = [...num]
@@ -178,9 +175,10 @@ function filterCardNumber(num) {
   }
 }
 
-
-let cardNumberIsOk = false
+// این متغیر در واقع جوابیه که سرور به ما میده که کارت معتبر است یا نه
+let cardNumberIsOk = true
 document.getElementById('cardnumber').addEventListener('input',function () {
+  console.log(myCartsArray);
   filterCardNumber(this.value)
   showCartsUnderInput(filteredArray)
   if (this.value.length>18) {
@@ -191,6 +189,16 @@ document.getElementById('cardnumber').addEventListener('input',function () {
     }
   }
 })
+function filter2 (event , value) {
+  if (event.key == 'Backspace') {
+    filteredArray = [...myCartsArray]
+    filterCardNumber(value.value)
+    // if(filteredArray.length > 0){
+    //   cartDropdown.classList.toggle(`d-block`);
+    // }
+    showCartsUnderInput(filteredArray)
+  }
+}
 
 
 // make cart number to star(*)
@@ -213,7 +221,7 @@ function showCartsUnderInput(arr) {
     child.setAttribute('data-month', el.cartMonth);
     child.classList ='rounded-8 cart-item bg-gradient-gray p-3 mb-1 mt-2 w-100 h-47 cursor-pointer d-flex align-items-center justify-content-between'
     child.innerHTML=
-    `<div class="d-flex align-items-center justify-content-end w-100 gap-2" onclick="closeModal()">
+    `<div class="d-flex align-items-center justify-content-end w-100 gap-2" onclick="closeModal(event)">
         <p class="fw-bold ltr mb-0">${cartNumberToStar(el.cartNumber)}</p>
         <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-24">
       </div>`
@@ -222,8 +230,19 @@ function showCartsUnderInput(arr) {
 }
 showCartsUnderInput(myCartsArray)
 
-function closeModal() {
+let cvv2 = document.getElementById('cvv2Digit');
+
+function closeModal(event) {
   cartDropdown.classList.remove('d-block');
+  let item = event.target.parentElement.parentElement
+  let cartYear = item.dataset.year;
+  let cartMonth = item.dataset.month;
+  cartDropdown.classList.remove('active');
+  cvv2.focus();
+  monthInput.value = cartMonth;
+  yearInput.value = cartYear;
+  bankLogo.src = item.querySelector('img').src;
+  cartNumber.value = item.querySelector('p').innerText;
 }
 showCartListDropdown.addEventListener('click', function () {
   cartDropdown.classList.toggle(`d-block`);
@@ -235,39 +254,51 @@ document.addEventListener('click', (event) => {
 })
 
 // show saved carts in sideBar
-let savedCartSideBar = document.getElementById('savedCartSideBar');
-let firstSavedCartSideBar = savedCartSideBar.children[0]
-let secondSavedCartSideBar = savedCartSideBar.children[1]
+let savedCartSideBar = document.getElementById('savedCartSideBar').children[0];
 function showCartsInSideBar() {
-  firstSavedCartSideBar.setAttribute('data-year', myCartsArray[myCartsArray.length-2].cartYear);
-firstSavedCartSideBar.setAttribute('data-month', myCartsArray[myCartsArray.length-2].cartMonth);
-firstSavedCartSideBar.innerHTML=
-`<svg class="cursor-pointer remove-cart" xmlns="http://www.w3.org/2000/svg" width="24" height="25"
-  viewBox="0 0 24 25" fill="none">
-  <path d="M8 8.5L16 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
-    stroke-linejoin="round" />
-  <path d="M16 8.5L8 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
-  stroke-linejoin="round" />
-</svg>
-<div class="d-flex align-items-center gap-2 cart-item">
-  <p class="fw-bold ltr mb-0">${cartNumberToStar(myCartsArray[myCartsArray.length-2].cartNumber)}</p>
-  <img alt="icon" src=${myCartsArray[myCartsArray.length-2].cartSrc} class="img-fluid d-block w-32 h-32">
-</div>`
-
-secondSavedCartSideBar.setAttribute('data-year', myCartsArray[myCartsArray.length-1].cartYear);
-secondSavedCartSideBar.setAttribute('data-month', myCartsArray[myCartsArray.length-1].cartMonth);
-secondSavedCartSideBar.innerHTML=
-`<svg class="cursor-pointer remove-cart" xmlns="http://www.w3.org/2000/svg" width="24" height="25"
-  viewBox="0 0 24 25" fill="none">
-  <path d="M8 8.5L16 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
-    stroke-linejoin="round" />
-  <path d="M16 8.5L8 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
-  stroke-linejoin="round" />
-</svg>
-<div class="d-flex align-items-center gap-2 cart-item">
-  <p class="fw-bold ltr mb-0">${cartNumberToStar(myCartsArray[myCartsArray.length-1].cartNumber)}</p>
-  <img alt="icon" src=${myCartsArray[myCartsArray.length-1].cartSrc} class="img-fluid d-block w-32 h-32">
-</div>`
+  savedCartSideBar.innerHTML = ""
+  let newChild = ''
+  if(myCartsArray.length > 1){
+    for (let i = 0; i < 2; i++) {
+      newChild = document.createElement('div')
+      newChild.setAttribute('data-year', myCartsArray[i].cartYear);
+      newChild.setAttribute('data-month', myCartsArray[i].cartMonth);
+      newChild.classList = "rounded-t-16 rounded-b-5 bg-gradient-gray cursor-pointer mb-2 px-3 w-288 h-47 d-flex align-items-center justify-content-between"
+      newChild.innerHTML=
+      `<svg class="cursor-pointer remove-cart" onclick="remove(this)" xmlns="http://www.w3.org/2000/svg" width="24" height="25"
+        viewBox="0 0 24 25" fill="none">
+        <path d="M8 8.5L16 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+          stroke-linejoin="round" />
+        <path d="M16 8.5L8 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+      </svg>
+      <div class="d-flex align-items-center gap-2 cart-item">
+        <p class="fw-bold ltr mb-0">${cartNumberToStar(myCartsArray[i].cartNumber)}</p>
+        <img alt="icon" src=${myCartsArray[i].cartSrc} class="img-fluid d-block w-32 h-32">
+      </div>`
+      savedCartSideBar.appendChild(newChild)
+    }
+  }else if (myCartsArray.length == 1) {
+    newChild = document.createElement('div')
+    newChild.setAttribute('data-year', myCartsArray[0].cartYear);
+    newChild.setAttribute('data-month', myCartsArray[0].cartMonth);
+    newChild.classList = "rounded-t-16 rounded-b-5 bg-gradient-gray cursor-pointer mb-2 px-3 w-288 h-47 d-flex align-items-center justify-content-between"
+    newChild.innerHTML=
+    `<svg class="cursor-pointer remove-cart" onclick="remove(this)" xmlns="http://www.w3.org/2000/svg" width="24" height="25"
+      viewBox="0 0 24 25" fill="none">
+      <path d="M8 8.5L16 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+        stroke-linejoin="round" />
+      <path d="M16 8.5L8 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
+      stroke-linejoin="round" />
+    </svg>
+    <div class="d-flex align-items-center gap-2 cart-item">
+      <p class="fw-bold ltr mb-0">${cartNumberToStar(myCartsArray[0].cartNumber)}</p>
+      <img alt="icon" src=${myCartsArray[0].cartSrc} class="img-fluid d-block w-32 h-32">
+    </div>`
+    savedCartSideBar.appendChild(newChild)
+  }else{
+    console.log("no cart added");
+  }
 }
 showCartsInSideBar()
 
@@ -281,7 +312,7 @@ function showCartsInModal() {
     newChild.setAttribute('data-month', el.cartMonth);
     newChild.classList = "rounded-t-16 rounded-b-5 cursor-pointer border bg-gradient-gray mb-2 px-3 w-100 h-47 d-flex align-items-center justify-content-between"
     newChild.innerHTML=
-   `<svg class="cursor-pointer remove-cart" xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+   `<svg class="cursor-pointer remove-cart" onclick="remove(this)" xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
       fill="none">
       <path d="M8 8.5L16 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round"
         stroke-linejoin="round"></path>
@@ -339,16 +370,24 @@ function addNewCart() {
 
 // remove cart
 let removeCart=Array.from(document.getElementsByClassName('remove-cart'));
+function remove(item) {
+  console.log(item);
+  let removableCart = item.parentElement.children[1].children[0].textContent 
+  findedCart = myCartsArray.filter((el)=>cartNumberToStar(el.cartNumber) == removableCart)
+  let removableCartIndex = myCartsArray.findIndex((obj)=> obj === findedCart[0])
+  myCartsArray.splice(removableCartIndex, 1);
+  showCartsInModal()
+  showCartsInSideBar()
+}
 
-removeCart.forEach((item)=>{
-  item.addEventListener('click',function () {
-    let removableCart = item.parentElement.children[1].children[0].textContent 
-    findedCart = myCartsArray.filter((el)=>cartNumberToStar(el.cartNumber) == removableCart)
-    let removableCartIndex = myCartsArray.findIndex((obj)=> obj === findedCart[0])
-    myCartsArray.splice(removableCartIndex, 1);
-    showCartsInModal()
-    showCartsInSideBar()
-  })
+// capcha Enter
+let secondPass = document.getElementById('secondPass');
+let capchacode =  document.getElementById('capcha')
+capchacode.addEventListener('input',function () {
+if (capchacode.value.length === 6){
+  secondPass.focus()
+  capchacode.blur()
+}
 })
 
 // set just number to input
@@ -362,7 +401,6 @@ $(".justNumber").keypress(function (e) {
 
 // second password
 
-let secondPass = document.getElementById('secondPass');
 let payment = document.getElementById('payment');
 let secondPassBtn = document.getElementById('secondPassBtn');
 let successAlert=document.getElementById('successAlert');
@@ -411,8 +449,6 @@ secondPassBtn.addEventListener('click', function (e) {
 })
 
 // enter submit buttom
-let cvv2 = document.getElementById('cvv2Digit');
-let capchacode =  document.getElementById('capcha')
 payment.addEventListener('click',function (e) {
   e.preventDefault();
   let formArray = [ cardnumber.value , cvv2.value , monthInput.value , yearInput.value , capchacode.value , secondPass.value ]
@@ -420,21 +456,28 @@ payment.addEventListener('click',function (e) {
     if (!arr) {
       if(arr === cardnumber.value){
         showCartListDropdown.classList="error"
+        document.getElementById("getErrorcartNum").style.color = "#CB0000"
       }
       if(arr === cvv2.value){
         cvv2.parentElement.classList="error"
+        document.getElementById("getErrorcvv2").style.color = "#CB0000"
       }
       if( arr === monthInput.value ){
         monthInput.classList="error"
+        document.getElementById("getErrorcartDate").style.color = "#CB0000"
       }
       if( arr === yearInput.value ){
         yearInput.classList="error"
+        document.getElementById("getErrorcartDate").style.color = "#CB0000"
+        document.getElementById("svgErrorDate").classList = "d-block position-absolute errorIcon start-0 flex-shrink-0 ms-2"
       }
       if( arr === capchacode.value ){
         capchacode.parentElement.classList="error"
+        document.getElementById("getErrorcapchacode").style.color = "#CB0000"
       }
       if( arr === secondPass.value ){
-        secondPass.parentElement.classList="error"
+        secondPass.parentElement.classList="error";
+        document.getElementById('getErrorsecondPass').style.color="#CB0000"
       } 
     }
   }
@@ -558,11 +601,6 @@ const capcha =  document.getElementById('capcha')
 yearInput.addEventListener('input',function () {
   if (this.value.length>1) {
     capcha.focus();
-  }
-})
-capcha.addEventListener('input',function () {
-  if (this.value.length>6) {
-    secondPass.focus();
   }
 })
 

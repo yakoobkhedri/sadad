@@ -209,8 +209,6 @@
     </div>
   </div>
 
-  <!-- header -->
-
   <header class="py-4 bg-white position-relative my-1">
     <!-- success alert -->
     <div id="successAlert"
@@ -330,14 +328,10 @@
                 <p class="mb-0 fs-12 text-center d-none d-lg-block">کارت‌های من</p>
 
                 <div id="savedCartSideBar" class="mt-3 d-none d-lg-block">
-                  <div 
-                    class="rounded-t-16 rounded-b-5 bg-gradient-gray cursor-pointer mb-2 px-3 w-288 h-47 d-flex align-items-center justify-content-between">
-                  
-                  </div>
-                  <div 
-                    class="rounded-t-16 rounded-b-5 bg-gradient-gray cursor-pointer mb-2 px-3 w-288 h-47 d-flex align-items-center justify-content-between">
+                  <div>
 
                   </div>
+
                   <div data-bs-toggle="modal" data-bs-target="#cartModal"
                     class="rounded-t-16 rounded-b-5 bg-gradient-gray px-3 w-288 h-47 d-flex align-items-center justify-content-center cursor-pointer">
                     <p class="fw-bold mb-0 fs-14">بیشتر</p>
@@ -431,14 +425,14 @@
                   <div class="d-flex align-items-center justify-content-between mb-3 gap-3">
                     <div class="flex-shrink-0 d-none d-sm-block">
                       <p class="fs-12 mb-1">۱. شماره کارت</p>
-                      <p class="mb-0 fs-12 text-gray gerError">شماره ۱۶ رقمی بر روی کارت شما</p>
+                      <p id="getErrorcartNum" class="mb-0 fs-12 text-gray gerError">شماره ۱۶ رقمی بر روی کارت شما</p>
                     </div>
                     <div class="max-w-296 position-relative">
                       <p class="fs-12 mb-2 d-sm-none fw-bold">۱. شماره کارت</p>
                       <div id="showCartListDropdown"
                         class="bg-gray mx-1 h-47 gerError position-relative box-focus z-10 border border-2 mb-1 rounded-8 d-flex align-items-center px-2 py-1">
                         <img width="20" id="bank-logo" src="">
-                        <input type="text" id="cardnumber" onkeyup="sunnyweb_check_number(this);" maxlength="19"
+                        <input type="text" id="cardnumber" onkeydown="filter2( event , this )" onkeyup="sunnyweb_check_number(this);" maxlength="19"
                           placeholder="- - - - - - - - - - - -"
                           class="bg-transparent justNumber transparent-focus text-gray ltr text-center fw-bold w-100 flex-grow-1 outline-none border-0">
                         <!-- cart icon -->
@@ -487,7 +481,7 @@
                   <div class="d-flex align-items-center justify-content-between mb-4 gap-3">
                     <div class="flex-shrink-0 d-none d-sm-block">
                       <p class="fs-12 mb-1">۲. شماره شناسایی دوم (CVV2)</p>
-                      <p class="mb-0 fs-12 text-gray gerError">شماره ۳ یا ۴ رقمی بر روی کارت شما</p>
+                      <p id="getErrorcvv2" class="mb-0 fs-12 text-gray gerError">شماره ۳ یا ۴ رقمی بر روی کارت شما</p>
                     </div>
                     <div class="max-w-296">
                       <p class="fs-12 mb-2 d-sm-none fw-bold">۲. شماره شناسایی دوم (CVV2)</p>
@@ -603,7 +597,7 @@
                   <div class="d-flex align-items-center justify-content-between mb-4 gap-3">
                     <div class="flex-shrink-0 d-none d-sm-block">
                       <p class="fs-12 mb-1">۳. تاریخ انقضا</p>
-                      <p class="mb-0 fs-12 text-gray gerError">تاریخ درج شده روی کارت شما</p>
+                      <p id="getErrorcartDate" class="mb-0 fs-12 text-gray gerError">تاریخ درج شده روی کارت شما</p>
                     </div>
                     <div class="max-w-296">
                       <p class="fs-12 mb-2 d-sm-none fw-bold">۳. تاریخ انقضا</p>
@@ -618,7 +612,7 @@
                           <input maxlength="2" id="yearInput" placeholder="سال"
                           class="justNumber bg-transparent box-focus p-2 h-100 text-gray fs-14 w-100 rounded-8 text-center fw-bold flex-grow-1 outline-none border-0">
                           <!-- error icon -->
-                          <svg class="d-none position-absolute errorIcon start-0 flex-shrink-0 ms-2" xmlns="http://www.w3.org/2000/svg" width="24"
+                          <svg id="svgErrorDate" class="d-none position-absolute errorIcon start-0 flex-shrink-0 ms-2" xmlns="http://www.w3.org/2000/svg" width="24"
                               height="24" viewBox="0 0 24 24" fill="none">
                               <path d="M12 13.1199V9.37988" stroke="#CB0000" stroke-width="1.5" stroke-linecap="round"
                                 stroke-linejoin="round" />
@@ -636,7 +630,7 @@
                   <div class="d-flex align-items-center justify-content-between mb-4 gap-3">
                     <div class="flex-shrink-0 d-none d-sm-block">
                       <p class="fs-12 mb-1">۴. کد امنیتی</p>
-                      <p class="mb-0 fs-12 text-gray gerError">کد امنیتی داخل کادر را وارد کنید</p>
+                      <p id="getErrorcapchacode" class="mb-0 fs-12 text-gray gerError">کد امنیتی داخل کادر را وارد کنید</p>
                     </div>
                     <div class="max-w-296">
                       <p class="fs-12 mb-2 d-sm-none fw-bold">۴. کد امنیتی</p>
@@ -679,7 +673,7 @@
                   <div class="d-flex align-items-center justify-content-between mb-4 gap-3">
                     <div class="flex-shrink-0 d-none d-sm-block">
                       <p class="fs-12 mb-1">۵. رمز دوم</p>
-                      <p class="mb-0 fs-12 text-gray">پیامک دریافتی پس از درخواست رمز را وارد کنید</p>
+                      <p id="getErrorsecondPass" class="mb-0 fs-12 text-gray">پیامک دریافتی پس از درخواست رمز را وارد کنید</p>
                     </div>
                     <div class="max-w-296">
                       <p class="fs-12 mb-2 d-sm-none fw-bold">۵. رمز دوم</p>
@@ -821,7 +815,7 @@
                         </div>
                       </div>
                     </div>
-                    <div class="d-flex align-items-center justify-content-between mb-4 gap-3">
+                    <div class="d-flex align-items-center justify-content-between gap-3">
                       <div class="flex-shrink-0 d-none d-sm-block">
                         <p class="fs-12 mb-1">۷. شماره موبایل</p>
                         <p class="mb-0 fs-12 text-gray">اختیاری</p>
