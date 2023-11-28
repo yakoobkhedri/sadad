@@ -619,7 +619,19 @@ removeBtnClose2.addEventListener('click', () => {
 
 cvv2Digit.addEventListener('input',function () {
   if (this.value.length>3) {
-    monthInput.focus();
+    if (yearInput.value || monthInput.value) {
+      if (!yearInput.value) {
+        yearInput.focus();
+      }else if (!monthInput.value) {
+        monthInput.focus()
+      }else{
+        capcha.focus();
+        cvv2Digit.blur()
+      }
+    }else{
+      monthInput.focus();
+      cvv2Digit.blur()
+    }
   }
 })
 
@@ -635,6 +647,10 @@ monthInput.addEventListener('input',function (event) {
 })
 const capcha =  document.getElementById('capcha')
 yearInput.addEventListener('input',function () {
+    // Check if the input value is between 0 and 12
+    if (this.value < 0 || this.value > 12) {
+      this.value = "";
+    }
   if (this.value.length>1) {
     capcha.focus();
   }
