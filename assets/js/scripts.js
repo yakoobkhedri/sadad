@@ -55,12 +55,22 @@ function initializeClock(id, endtime) {
     if (t.total <= 0) {
       clearInterval(timeinterval);
     }
+    if (t.minutes == 0 && t.seconds == 30) {
+      minutesSpan.style.color = '#CB0000';
+      minutesSpan.parentElement.style.backgroundColor = '#fae5e5';
+      secondsSpan.style.color = '#CB0000';
+      secondsSpan.parentElement.style.backgroundColor = '#fae5e5';
+      document.querySelector('.time-remain').classList.add('error-remain');
+    }
+    if (t.minutes == 0 && t.seconds == 0) {
+      clearInterval(timeinterval);
+      //_____________ این سایت عوض شود______________________________________________________
+      window.open("https://getbootstrap.com");
+    }
   }
-
   updateClock();
   const timeinterval = setInterval(updateClock, 1000);
 }
-
 const deadline = new Date(Date.parse(new Date()) + 1 * 1 * 15 * 60 * 1000);
 initializeClock('clockdiv', deadline);
 
@@ -327,9 +337,35 @@ function showCartsInModal() {
   }
 }
 showCartsInModal()
-showCartListDropdown.addEventListener('click', function () {
-  this.nextElementSibling.classList.toggle('active');
-})
+// show saved carts in Modal Mobile Version
+let mobileModalBody = document.getElementById('mobile-modal-body');
+function showCartsInModalMobile() {
+  mobileModalBody.innerHTML = ""
+  for (let [elIndex , el] of Object.entries(myCartsArray)) {
+    let newChild = document.createElement('div')
+    newChild.setAttribute('data-year', el.cartYear);
+    newChild.setAttribute('data-month', el.cartMonth);
+    newChild.classList = "rounded-8 bg-gray4 mb-2 cursor-pointer px-2 h-64 cart-item d-flex align-items-center justify-content-between"
+    newChild.innerHTML=
+    `<svg class="cursor-pointer remove-cart" onclick="remove(this)" xmlns="http://www.w3.org/2000/svg" width="24" height="25" viewBox="0 0 24 25"
+      fill="none">
+      <path d="M8 8.5L16 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      </path>
+      <path d="M16 8.5L8 16.5" stroke="#323232" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+      </path>
+    </svg>
+    <div data-bs-dismiss="offcanvas" aria-label="Close" class="d-flex align-items-center gap-2 flex-grow-1 h-100 justify-content-end">
+      <p class="fw-bold ltr mb-0">${cartNumberToStar(el.cartNumber)}</p>
+      <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-32 h-32">
+    </div>`
+    mobileModalBody.appendChild(newChild)
+    if (elIndex == 0) {
+      newChild.style.backgroundColor = '#FF89651A'
+      newChild.style.border = '1px solid #FF896533'
+    }
+  }
+}
+showCartsInModalMobile()
 document.addEventListener('click', (event) => {
   if (!event.target.closest('.cartDropdown') && !event.target.closest('#showCartListDropdown')) {
     cartDropdown.classList.remove('active');
@@ -371,13 +407,13 @@ function addNewCart() {
 // remove cart
 let removeCart=Array.from(document.getElementsByClassName('remove-cart'));
 function remove(item) {
-  console.log(item);
   let removableCart = item.parentElement.children[1].children[0].textContent 
   findedCart = myCartsArray.filter((el)=>cartNumberToStar(el.cartNumber) == removableCart)
   let removableCartIndex = myCartsArray.findIndex((obj)=> obj === findedCart[0])
   myCartsArray.splice(removableCartIndex, 1);
   showCartsInModal()
   showCartsInSideBar()
+  showCartsInModalMobile()
 }
 
 // capcha Enter

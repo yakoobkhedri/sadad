@@ -335,13 +335,22 @@ box-shadow: 0px 4px 4px 0px #00000040;
     display: none;
 }
 
-.filterContent,.moreContent {
+.filterContent {
+    max-height: 0;
+    padding: 0 !important;
+    transition: all .4s;
+}
+.moreContent {
     max-height: 1000px;
     padding: 0 !important;
     transition: all .4s;
 }
 
-.filterContent.active,.moreContent.active {
+.filterContent.active {
+    max-height: 1000px;
+    padding: 10px 0 0 0 !important;
+}
+.moreContent.active {
     max-height: 1000px;
     padding: 10px 0 !important;
 }
