@@ -229,11 +229,11 @@ function showCartsUnderInput(arr) {
     let child = document.createElement('div')
     child.setAttribute('data-year', el.cartYear);
     child.setAttribute('data-month', el.cartMonth);
-    child.classList ='rounded-8 cart-item bg-gradient-gray p-3 mb-1 mt-2 w-100 h-47 cursor-pointer d-flex align-items-center justify-content-between'
+    child.classList ='rounded-8 cart-item bg-gradient-gray mb-1 mt-2 w-100 h-47 cursor-pointer d-flex align-items-center justify-content-between'
     child.innerHTML=
-    `<div class="d-flex align-items-center justify-content-end w-100 gap-2" onclick="closeModal(event)">
+    `<div class="d-flex align-items-center justify-content-end px-3 h-100 w-100 gap-2" onclick="closeModal(event)">
         <p class="fw-bold ltr mb-0">${cartNumberToStar(el.cartNumber)}</p>
-        <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-24">
+        <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-35">
       </div>`
     cartDropdown.appendChild(child)
   }
@@ -284,7 +284,7 @@ function showCartsInSideBar() {
       </svg>
       <div class="d-flex align-items-center gap-2 cart-item">
         <p class="fw-bold ltr mb-0">${cartNumberToStar(myCartsArray[i].cartNumber)}</p>
-        <img alt="icon" src=${myCartsArray[i].cartSrc} class="img-fluid d-block w-32 h-32">
+        <img alt="icon" src=${myCartsArray[i].cartSrc} class="img-fluid d-block w-35">
       </div>`
       savedCartSideBar.appendChild(newChild)
     }
@@ -303,7 +303,7 @@ function showCartsInSideBar() {
     </svg>
     <div class="d-flex align-items-center gap-2 cart-item">
       <p class="fw-bold ltr mb-0">${cartNumberToStar(myCartsArray[0].cartNumber)}</p>
-      <img alt="icon" src=${myCartsArray[0].cartSrc} class="img-fluid d-block w-32 h-32">
+      <img alt="icon" src=${myCartsArray[0].cartSrc} class="img-fluid d-block w-35">
     </div>`
     savedCartSideBar.appendChild(newChild)
   }else{
@@ -331,7 +331,7 @@ function showCartsInModal() {
     </svg>
     <div class="cart-item d-flex align-items-center gap-2 flex-grow-1 justify-content-end h-100" data-bs-dismiss="modal">
       <p class="fw-bold ltr mb-0">${cartNumberToStar(el.cartNumber)}</p>
-      <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-32 h-32">
+      <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-35">
     </div>`
       modalBody.appendChild(newChild)
   }
@@ -356,13 +356,9 @@ function showCartsInModalMobile() {
     </svg>
     <div data-bs-dismiss="offcanvas" aria-label="Close" class="d-flex align-items-center gap-2 flex-grow-1 h-100 justify-content-end">
       <p class="fw-bold ltr mb-0">${cartNumberToStar(el.cartNumber)}</p>
-      <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-32 h-32">
+      <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-35">
     </div>`
     mobileModalBody.appendChild(newChild)
-    if (elIndex == 0) {
-      newChild.style.backgroundColor = '#FF89651A'
-      newChild.style.border = '1px solid #FF896533'
-    }
   }
 }
 showCartsInModalMobile()

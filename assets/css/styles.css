@@ -247,7 +247,9 @@ box-shadow: 0px 4px 4px 0px #00000040;
 .w-32 {
     width: 32px;
 }
-
+.w-35{
+    width: 35px;
+}
 .w-84 {
     width: 84px;
 }

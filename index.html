@@ -319,7 +319,7 @@
                       <p class="fs-12 mb-2 d-sm-none fw-bold">۱. شماره کارت</p>
                       <div id="showCartListDropdown"
                         class="bg-gray mx-1 h-47 gerError position-relative box-focus z-10 border border-2 mb-1 rounded-8 d-flex align-items-center px-2 py-1">
-                        <img width="20" id="bank-logo" src="">
+                        <img width="35" id="bank-logo" src="">
                         <input type="text" id="cardnumber" onkeydown="filter2( event , this )" onkeyup="sunnyweb_check_number(this);" maxlength="19"
                           placeholder="- - - - - - - - - - - -"
                           class="bg-transparent justNumber transparent-focus text-gray ltr text-center fw-bold w-100 flex-grow-1 outline-none border-0">
@@ -374,7 +374,7 @@
                     <div class="max-w-296">
                       <p class="fs-12 mb-2 d-sm-none fw-bold">۲. شماره شناسایی دوم (CVV2)</p>
                       <div class="bg-gray h-47 gerError box-focus border border-2 rounded-8 d-flex align-items-center px-2 py-1">
-                        <input id="cvv2Digit" maxlength="4" placeholder="CVV2"
+                        <input type="password" id="cvv2Digit" maxlength="4" placeholder="CVV2"
                           class="justNumber transparent-focus bg-transparent text-gray fs-14 text-center fw-bold w-100 flex-grow-1 outline-none border-0">
                         <div class="cursor-pointer position-relative">
                           <!-- cart icon -->
@@ -697,8 +697,8 @@
                       </div>
                       <div class="max-w-296">
                         <p class="fs-12 mb-2 d-sm-none fw-bold">۶. ایمیل</p>
-                        <div class="d-flex align-items-center justify-content-between gap-2">
-                          <input type="email" placeholder="ایمیل خود را وارد نمایید"
+                        <div class="d-flex align-items-center justify-content-center gap-2 text-center ltr">
+                          <input type="email" placeholder="Mail@domain.com"
                             class="text-gray fs-14 fw-bold w-100 outline-none bg-gray border border-2 max-w-296 rounded-8 p-2">
                         </div>
                       </div>
@@ -710,8 +710,8 @@
                       </div>
                       <div class="max-w-296">
                         <p class="fs-12 mb-2 d-sm-none fw-bold">۷. شماره موبایل</p>
-                        <div class="d-flex align-items-center justify-content-between gap-2">
-                          <input maxlength="10" placeholder="شماره موبایل خود را وارد نمایید"
+                        <div class="d-flex align-items-center justify-content-center gap-2 text-center ltr">
+                          <input maxlength="10" placeholder="09*********"
                             class="justNumber text-gray fs-14 fw-bold w-100 outline-none bg-gray border border-2 max-w-296 rounded-8 p-2">
                         </div>
                       </div>
