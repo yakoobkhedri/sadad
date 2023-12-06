@@ -226,7 +226,10 @@ body {
     max-width: 264px;
     width: 100%;
 }
-
+.max-w-294 {
+    max-width: 294px;
+    width: 100%;
+}
 .max-w-374 {
     max-width: 374px;
     width: 100%;
@@ -515,10 +518,7 @@ input:focus {
 
 @media only screen and (max-width:1400px) {
 
-    .max-w-296 {
-        max-width: 249px;
-        width: 100%;
-    }
+   
 }
 
 @media only screen and (max-width:1200px) {
@@ -526,7 +526,7 @@ input:focus {
         background-color: #fafafa;
     }
 
-    .accordion.max-w-264 {
+    .accordion.max-w-294 {
         max-width: 100vw !important;
     }
 
@@ -574,7 +574,6 @@ input:focus {
     .bg-main .max-w-264 {
         max-width: 100vw;
     }
-
     .saveCart {
         margin-top: 0;
     }
