@@ -107,9 +107,9 @@ body {
     box-shadow: 0px 0px 8px 0px #00000040;
 }
 
-.shadow3{
-box-shadow: 0px 4px 24px 0px #0000001A;
-box-shadow: 0px 4px 4px 0px #00000040;
+.shadow3 {
+    box-shadow: 0px 4px 24px 0px #0000001A;
+    box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 /* padding */
@@ -180,11 +180,12 @@ box-shadow: 0px 4px 4px 0px #00000040;
 .bg-green {
     background-color: #0AC254;
 }
-.bg-green2{
+
+.bg-green2 {
     background-color: #0BA350;
 }
 
-.bg-red{
+.bg-red {
     background-color: #CB0000;
 }
 
@@ -247,9 +248,11 @@ box-shadow: 0px 4px 4px 0px #00000040;
 .w-32 {
     width: 32px;
 }
-.w-35{
+
+.w-35 {
     width: 35px;
 }
+
 .w-84 {
     width: 84px;
 }
@@ -315,25 +318,25 @@ box-shadow: 0px 4px 4px 0px #00000040;
 }
 
 /* padding */
-.p-8{
+.p-8 {
     padding: 8px;
 }
 
 /* border */
-.border-main-1{
-    border: 1px solid #FD9E02!important;
+.border-main-1 {
+    border: 1px solid #FD9E02 !important;
 }
 
-.border-main-2{
+.border-main-2 {
     border: 1.6px solid #F59602
 }
 
 /* global styles */
-.d-flexx{
+.d-flexx {
     display: flex;
 }
 
-.d-nonee{
+.d-nonee {
     display: none;
 }
 
@@ -342,6 +345,7 @@ box-shadow: 0px 4px 4px 0px #00000040;
     padding: 0 !important;
     transition: all .4s;
 }
+
 .moreContent {
     max-height: 1000px;
     padding: 0 !important;
@@ -352,6 +356,7 @@ box-shadow: 0px 4px 4px 0px #00000040;
     max-height: 1000px;
     padding: 10px 0 0 0 !important;
 }
+
 .moreContent.active {
     max-height: 1000px;
     padding: 10px 0 !important;
@@ -415,77 +420,98 @@ a {
     border: 1px solid #FF896533
 }
 
-.overflow-y-auto{
+.overflow-y-auto {
     overflow-y: auto;
 }
 
-.scroll-hidden::-webkit-scrollbar{
+.scroll-hidden::-webkit-scrollbar {
     width: 0;
 }
-.scroll-hidden::-webkit-scrollbar-track{
+
+.scroll-hidden::-webkit-scrollbar-track {
     background-color: transparent;
     width: 0;
 }
-.scroll-hidden::-webkit-scrollbar-thumb{
+
+.scroll-hidden::-webkit-scrollbar-thumb {
     background-color: transparent;
     width: 0;
 }
-.scroll-hidden{
+
+.scroll-hidden {
     scrollbar-width: thin;
     scrollbar-color: transparent;
 }
-.send-email{
+
+.send-email {
     opacity: 0;
     transition: all .4s;
 }
-.send-email.active{
-   opacity: 100%;
-   margin-bottom: 41px;
+
+.send-email.active {
+    opacity: 100%;
+    margin-bottom: 41px;
 }
-#saveCart.unCheck svg{
+
+#saveCart.unCheck svg {
     display: none;
 }
-#payment.bg-green{
+
+#payment.bg-green {
     background-color: #0BA350;
-    color: white!important;
+    color: white !important;
 }
-input:focus{
-    border: 1px solid #FD9E02!important;
+
+input:focus {
+    border: 1px solid #FD9E02 !important;
 }
-.box-focus:focus-within,.focus{
-    border: 1px solid #FD9E02!important;
+
+.box-focus:focus-within,
+.focus {
+    border: 1px solid #FD9E02 !important;
 }
-.transparent-focus:focus{
+
+.transparent-focus:focus {
     border: 1px solid transparent !important;
 }
 
-.error{
-    border: 1px solid #CB000066!important;
+.error {
+    border: 1px solid #CB000066 !important;
     background: #fae5e5;
     display: flex;
-  align-items: center;
-  gap: 4px;
-  height: 47px;
-  width: 100%;
-  border-radius: 8px;
-  padding: 4px;
-  outline: none;
+    align-items: center;
+    gap: 4px;
+    height: 47px;
+    width: 100%;
+    border-radius: 8px;
+    padding: 4px;
+    outline: none;
 }
-.error-bg{
+
+.error-bg {
     background: #fae5e5;
 }
-.error-bg-white.error{
+
+.error-bg-white.error {
     background-color: white;
 }
-.error .errorIcon,.error-remain p:last-child{
-   display: block!important;
+
+.error .errorIcon,
+.error-remain p:last-child {
+    display: block !important;
 }
-.error .cart-icon,.error-remain p:first-child{
-    display: none!important;
- }
- .error input::placeholder,.error::placeholder,.error-text,.error-bg{
+
+.error .cart-icon,
+.error-remain p:first-child {
+    display: none !important;
+}
+
+.error input::placeholder,
+.error::placeholder,
+.error-text,
+.error-bg {
     color: #CB0000;
- }
+}
 
 @media only screen and (max-width:1400px) {
 
@@ -530,12 +556,14 @@ input:focus{
         opacity: 100%;
         max-height: 0;
         overflow: hidden;
-      }
-      .send-email.active {
+    }
+
+    .send-email.active {
         max-height: 1000px;
         margin-bottom: 0;
-      }
+    }
 }
+
 @media only screen and (max-width:768px) {
     .moreContent {
         max-height: 0;
@@ -550,9 +578,14 @@ input:focus{
     .saveCart {
         margin-top: 0;
     }
-
-    .pt-50 {
-        padding-top: 76px !important;
+    .position-fixed-sm{
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        right: 0;
+    }
+    .-mt-4 {
+        margin-top: 21px;
       }
 }
 
