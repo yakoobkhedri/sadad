@@ -470,6 +470,7 @@ secondPassBtn.addEventListener('click', function (e) {
     if (time < 0) {
       clearInterval(timerId);
       secondPassBtn.querySelector('p').style.display = 'block';
+      secondPassBtn.querySelector('p').innerText='دریافت مجدد رمز پویا';
       secondPassBtn.querySelector('.secondPassTimer').style.display = 'none';
       secondPassBtn.style.backgroundColor = '#0BA350';
       secondPassBtn.removeAttribute('disabled');
