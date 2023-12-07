@@ -582,6 +582,7 @@ input:focus {
         bottom: 0;
         left: 0;
         right: 0;
+        box-shadow: 0 0 15px lightgray;
     }
     .-mt-4 {
         margin-top: 21px;
