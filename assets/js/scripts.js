@@ -4,6 +4,8 @@ let filterBtn = Array.from(document.getElementsByClassName('filterBtn'));
 let moreBtn = Array.from(document.getElementsByClassName('moreBtn'));
 let filterContent = Array.from(document.getElementsByClassName('filterContent'));
 let moreContent = Array.from(document.getElementsByClassName('moreContent'));
+let showMore=document.querySelector('.showMoreList');
+let moreList=document.querySelector('.moreList');
 
 filterBtn.forEach((item) => {
   item.addEventListener('click', function () {
@@ -18,7 +20,11 @@ moreBtn.forEach((item) => {
     item.classList.add('d-none');
   })
 })
-
+showMore.addEventListener('click',function () {
+   moreList.classList.add('active');
+   showMore.classList.remove('d-block');
+   showMore.classList.add('d-none');
+})
 // timer
 
 function getTimeRemaining(endtime) {
@@ -176,12 +182,9 @@ function filterCardNumber(num) {
         if (newNum[enterNumIndex] !== [...arrayElement.cartNumber][enterNumIndex]){
           filteredArray.splice(arrayElementIndex,1)
           break
-
         }
       }
-      
     }
-    
   }
 }
 
@@ -231,9 +234,9 @@ function showCartsUnderInput(arr) {
     child.setAttribute('data-month', el.cartMonth);
     child.classList ='rounded-8 cart-item bg-gradient-gray mb-1 mt-2 w-100 h-47 cursor-pointer d-flex align-items-center justify-content-between'
     child.innerHTML=
-    `<div class="d-flex align-items-center justify-content-end px-3 h-100 w-100 gap-2" onclick="closeModal(event)">
-        <p class="fw-bold ltr mb-0">${cartNumberToStar(el.cartNumber)}</p>
-        <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-35">
+    `<div class="d-flex align-items-center fw-bold ltr justify-content-start px-3 h-100 w-100 gap-2" onclick="closeModal(event)">
+    <img alt="icon" src=${el.cartSrc} class="img-fluid d-block w-35">
+    ${cartNumberToStar(el.cartNumber)}
       </div>`
     cartDropdown.appendChild(child)
   }
@@ -384,7 +387,9 @@ cartItem.forEach((item) => {
     cartDropdown.classList.remove('active');
     cvv2Digit.focus();
     monthInput.value = cartMonth;
+    monthInput.setAttribute('type','password')
     yearInput.value = cartYear;
+    yearInput.setAttribute('type','password');
     bankLogo.src = item.querySelector('img').src;
     cartNumber.value = item.querySelector('p').innerText;
   })
