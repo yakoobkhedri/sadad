@@ -184,7 +184,7 @@
           <a class="d-block"><img alt="logo" src="assets/img/logo.png" class="img-fluid"></a>
           <p class="fs-12 text-gray mb-0">ارائه راه‌کار‌های پرداخت</p>
         </div>
-        <img alt="icon" src="assets/img/shaparak.png" class="img-fluid">
+        <img alt="icon" src="assets/img/shaparak.png" class="img-fluid w-101">
       </div>
     </div>
   </header>
@@ -577,7 +577,7 @@
                       <div class="d-flex align-items-center justify-content-between gap-2">
                         <div
                           class="bg-gray h-47 box-focus w-50 border border-2 max-w-264 rounded-8 d-flex align-items-center px-2 py-1">
-                          <input maxlength="7" id="secondPass" placeholder="رمز دوم"
+                          <input type="password" maxlength="7" id="secondPass" placeholder="رمز دوم"
                             class="justNumber transparent-focus bg-transparent text-gray fs-14 fw-bold w-100 flex-grow-1 outline-none border-0">
                           <div class="cursor-pointer position-relative">
                             <svg class="keyboardIcon" xmlns="http://www.w3.org/2000/svg" width="24" height="24"
@@ -683,11 +683,11 @@
                       </div>
                     </div>
                   </div>
-                  <div
-                    class="border border-lg-0 d-flexx align-items-center justify-content-between rounded-8 p-2 mb-4 mb-lg-0">
+                  <div id="open-mailBox"
+                    class="border border-lg-0 cursor-pointer d-flexx align-items-center justify-content-between rounded-8 p-2 mb-4 mb-lg-0">
                     <p class="fs-12 mb-0 d-none d-lg-block">مایل به ارسال ایمیل یا پیامک تراکنش</p>
                     <p class="d-lg-none fs-12 mb-0">ارسال ایمیل یا پیامک تراکنش (اختیاری)</p>
-                    <svg class="cursor-pointer" id="open-mailBox" xmlns="http://www.w3.org/2000/svg" width="24"
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24"
                       height="24" viewBox="0 0 24 24" fill="none">
                       <path fill-rule="evenodd" clip-rule="evenodd"
                         d="M18 20H6C4.895 20 4 19.105 4 18V6C4 4.895 4.895 4 6 4H18C19.105 4 20 4.895 20 6V18C20 19.105 19.105 20 18 20Z"
@@ -741,16 +741,16 @@
                       <p class="mb-0 fs-12">ذخیره شماره و اطلاعات کارت جدید</p>
                     </div>
                     <div
-                      class="p-4 p-sm-0 order-0 order-sm-1 d-flex align-items-center gap-2 max-w-264 position-fixed-sm bg-white z-10">
-                      <button class="border rounded-8 fs-14 text-danger p-2 w-84 bg-white">انصراف</button>
+                      class="order-0 order-sm-1 max-w-264 d-flex align-items-center gap-2 bg-white z-10 w-sm-100">
                       <button id="payment"
-                        class="border w-100 transition rounded-8 fs-14 text-secondary py-2 px-4 flex-grow-1 bg-gray d-flex align-items-center justify-content-center gap-2">
+                        class="border transition rounded-8 fs-14 text-secondary py-2 px-4 flex-grow-1 bg-gray d-flex align-items-center justify-content-center gap-2">
                         <p class="mb-0 fs-12">پرداخت</p>
                         <div class="d-flex align-items-center gap-1">
                           <p class="font-bold mb-0">1.000.000.000</p>
                           <p class="fs-12 mb-0">ریال</p>
                         </div>
                       </button>
+                      <button class="border rounded-8 fs-14 text-danger p-2 w-84 bg-white">انصراف</button>
                     </div>
                   </div>
                 </form>
@@ -802,7 +802,7 @@
                 </div>
                 <!--  -->
                 <div class="filterContent active transition overflow-hidden">
-                  <ul class="fs-11 text-justify text-secondary lh-16 px-4 mb-0">
+                  <ul class="fs-11 text-justify text-secondary lh-16-85 px-4 mb-0">
                     <li><span class="fw-bold">شماره کارت:</span>۱۶ رقمی بوده و بصورت ۴ قسمت ۴ رقمی و روی کارت درج شده
                       است.</li>
                     <li><span class="fw-bold">CVV2:</span>با طول ۳ یا ۴ رقـم کنـار شمـاره‌کارت و یـا پـشت کارت درج شده
@@ -820,7 +820,7 @@
                       احتمـالی، مـوضـوع را بـا ما درمیان بگذارید.<a
                         class="text-primary d-block text-start -mt-15 showMoreList">بیشتر...</a></li>
                     <div class="moreList">
-                      <li>ز صحت نـام فـروشنـده و مبـلغ نـمایش داده شـده، اطمینان حاصل فرمایید</li>
+                      <li>از صحت نـام فـروشنـده و مبـلغ نـمایش داده شـده، اطمینان حاصل فرمایید</li>
                       <li>برای جلوگیـری از افـشـای رمـز کـارت خـود، از صـفـحـه کـلـیـد مجازی استفـاده فرمایید</li>
                       <li>برای کسـب اطلاعات بیشتـر، گزارش فروشگـاه‌های مشکـوک و همچنین اطـلاع از وضـعیـت پذیرنـدگان
                         اینترنتی با شـمـاره 42739000-021 تمـاس بگیــریـد و یـا از طـریـق ایـمـیـل callcenter@sadadpsp.ir

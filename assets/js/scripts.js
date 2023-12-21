@@ -530,8 +530,8 @@ if (cardnumber.value || cvv2.value || monthInput.value || yearInput.value || cap
 // open mailbox
 let openMailBox = document.getElementById('open-mailBox');
 openMailBox.addEventListener('click', function () {
-  this.parentElement.nextElementSibling.classList.add('active');
-  this.parentElement.style.display = 'none';
+  this.nextElementSibling.classList.add('active');
+  this.style.display = 'none';
 })
 
 // save cart checkbox

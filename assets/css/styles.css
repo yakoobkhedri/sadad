@@ -146,7 +146,9 @@ body {
 .lh-16 {
     line-height: 16px;
 }
-
+.lh-16-85 {
+    line-height: 16.85px;
+}
 /* background */
 
 .bg-main {
@@ -263,7 +265,9 @@ body {
 .w-84 {
     width: 84px;
 }
-
+.w-101{
+    width: 101px;
+}
 .w-121 {
     width: 121px;
 }
@@ -586,15 +590,11 @@ input:focus {
     .saveCart {
         margin-top: 0;
     }
-    .position-fixed-sm{
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        box-shadow: 0 0 15px lightgray;
-    }
     .-mt-4 {
         margin-top: 21px;
+      }
+      .w-sm-100{
+        width: 100%;
       }
 }
 
