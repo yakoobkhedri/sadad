@@ -247,7 +247,7 @@ let cvv2 = document.getElementById('cvv2Digit');
 
 function closeModal(event) {
   cartDropdown.classList.remove('d-block');
-  let item = event.target.parentElement.parentElement
+  let item = event.target.parentElement.parentElement;
   let cartYear = item.dataset.year;
   let cartMonth = item.dataset.month;
   cartDropdown.classList.remove('active');
